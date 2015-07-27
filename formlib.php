@@ -1,7 +1,16 @@
-<?php
+<?php if(!defined('BASEPATH'))exit('No direct script access allowed');
 
-if (!defined('BASEPATH'))
-    exit('No direct script access allowed');
+/**
+ * Form Lib é uma biblioteca para gerar formulários dinamicamente em projetos
+ * que utilizem o CodeIgniter Framework.
+ *
+ * Um exemplo de utilização está no arquivo development.php que simula um
+ * controller gerando um formulário.
+ *
+ * @author Eliel de Paula <dev@elieldepaula.com.br>
+ * @version beta
+ * @licence MIT
+ */
 
 class formlib 
 {
@@ -11,7 +20,7 @@ class formlib
 	private $form_cancelaction 	= ''; // Endereço completo do cancelamento (http://endereco/completo).
 	private $form_submit_label 	= 'Submit'; // Texto do botão de submit.
 	private $form_cancel_label 	= 'Cancel'; // Texto do botão de cancelamento.
-	private $form_type 			= 'post'; // Tipo de envio: post, get, multipart.
+	private $form_method 		= 'post'; // Tipo de envio: post, get, multipart.
 	private $form_role 			= 'form'; // Tag 'role' usada pelo bootstrap.
 	private $form_itens 		= array(); // array com os itens do formulário.
 
@@ -107,10 +116,10 @@ class formlib
 		$html .= "<div class=\"panel panel-default\">\n";
 		$html .= "<div class=\"panel-heading\">".$this->form_title."</div>\n";
 		$html .= "<div class=\"panel-body\">\n";
-		if($this->form_type == 'multipart'){
-			$html .= "<form action=\"".$this->form_submitaction."\" type=\"".$this->form_type."\" enctype=\"multipart/form-data\" role=\"".$this->form_role."\" >\n";
+		if($this->form_method == 'multipart'){
+			$html .= "<form action=\"".$this->form_submitaction."\" method=\"post\" enctype=\"multipart/form-data\" role=\"".$this->form_role."\" >\n";
 		} else {
-			$html .= "<form action=\"".$this->form_submitaction."\" type=\"".$this->form_type."\" role=\"".$this->form_role."\" >\n";
+			$html .= "<form action=\"".$this->form_submitaction."\" method=\"".$this->form_method."\" role=\"".$this->form_role."\" >\n";
 		}
 		return $html;
 	}

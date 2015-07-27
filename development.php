@@ -32,7 +32,7 @@ class Development extends MX_Controller {
 						'name' => 'nome',
 						'id' => 'nome',
 						'label' => 'Nome completo',
-						'type' => 'text',
+						'method' => 'text',
 						'required' => true,
 						'value' => '',
 						'placeholder' => 'Digite seu nome completo...',
@@ -113,7 +113,7 @@ class Development extends MX_Controller {
 							'3' => 'Proposta de trabalho'
 						),
 						'extras' => '0'
-					)
+					),
 					// ...
 				);
 
