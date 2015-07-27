@@ -1,6 +1,7 @@
 <?php if(!defined('BASEPATH'))exit('No direct script access allowed');
 
 /**
+ * -------------------------------------------------------------------------------------
  * Form Lib é uma biblioteca para gerar formulários dinamicamente em projetos
  * que utilizem o CodeIgniter Framework.
  *
@@ -10,6 +11,7 @@
  * @author Eliel de Paula <dev@elieldepaula.com.br>
  * @version beta
  * @licence MIT
+ * -------------------------------------------------------------------------------------
  */
 
 class formlib 
