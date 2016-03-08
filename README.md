@@ -2,8 +2,6 @@
 
 ## [English]
 
-# Formlib CodeIgniter Library
-
 Formlib.php is a library for CodeIgniter that contains the necessary tools for creating and maintaining forms using CodeIgniter resources together with the styles of Bootstrap.
 
 It is hoped that in this way we can take advantage of security features and stability of the Framework.
