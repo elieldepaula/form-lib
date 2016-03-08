@@ -1,6 +1,4 @@
-<?php
-
-defined('BASEPATH') OR exit('No direct script access allowed');
+<?php defined('BASEPATH') OR exit('No direct script access allowed');
 
 /**
  * FormLib
@@ -9,6 +7,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  *
  *   Dependency: 
  * ----------------------------------------------------------------------------
+ * - Bootstrap (http://getbootstrap.com/)
  * - Form Helper
  * - URL Helper 
  *
