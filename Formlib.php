@@ -40,38 +40,38 @@
  * @copyright   Copyright (c) 2015 - 2016, Eliel de Paula. (http://elieldepaula.com.br/)
  * @license     http://opensource.org/licenses/MIT  MIT License
  * @link        https://github.com/elieldepaula/FormLib
- * @version     1.0.0
+ * @version     1.0.1
  */
 class Formlib 
 {
 
-    /**
-    * HTML output.
+	/**
+	* HTML output.
     *
     * @var string
-    */
-    protected $output_html;
+	*/
+	protected $output_html;
 
-    /**
+	/**
     * Template for the top of the form wrapper.
     *
     * @var string
     */
-    protected $template_header = 'forms/template_header';
+	protected $template_header = 'forms/template_header';
 
     /**
     * Template for the footer of the form wrapper.
     *
     * @var string
     */
-    protected $template_footer = 'forms/template_footer';
+	protected $template_footer = 'forms/template_footer';
 
     /**
     * Title of the form used into the form wrapper.
     *
     * @var string
     */
-    protected $form_title;
+	protected $form_title;
 
     /**
     * The bootstrap style class for the form, available options:
@@ -82,14 +82,14 @@ class Formlib
     *
     * @var string
     */
-    protected $form_type = 'form-horizontal';
+	protected $form_type = 'form-horizontal';
 
     /**
     * URL action of the form.
     *
     * @var string
     */
-    protected $form_action;
+	protected $form_action;
 
     /**
     * Method of the form, available options:
@@ -100,49 +100,49 @@ class Formlib
     *
     * @var string
     */
-    protected $form_method = 'post';
+	protected $form_method = 'post';
 
     /**
     * Define if wrapp the form or not.
     *
     * @var boolean
     */
-    protected $wrap_form = TRUE;
+	protected $wrap_form = TRUE;
 
     /**
     * Array data for send content to header template.
     *
     * @var array
     */
-    protected $data_header;
+	protected $data_header;
 
     /**
     * Array data for send content to footer template.
     *
     * @var array
     */
-    protected $data_footer;
+	protected $data_footer;
 
-    /**
+	/**
     * Array with the fields values.
     *
     * @var array
     */
-    protected $form_fields;
+	protected $form_fields;
 
-    /**
+	/**
     * Array with the buttons values.
     *
     * @var array
     */
-    protected $form_buttons;
+	protected $form_buttons;
 
     /**
     * Contructor of the library.
     *
     * @return void
     */
-    public function __construct()
+	public function __construct()
     {
         log_message('debug', "Formlib Class Initialized");
     }
@@ -195,19 +195,21 @@ class Formlib
     */
     private function do_renderize_form()
     {
-        if(isset($this->form_title))
-            $this->data_header['title'] = $this->form_title;
-        if($this->wrap_form)
-            $this->output_html .= $this->load->view($this->template_header, $this->data_header, true);
-        $this->output_html .= $this->do_renderize_form_tag();
-        $this->output_html .= $this->do_render_fields();
-        $this->output_html .= "<hr/>\n";
-        $this->output_html .= $this->do_render_buttons();
-        $this->output_html .= form_close();
-        if($this->wrap_form)
-            $this->output_html .= $this->load->view($this->template_footer, $this->data_footer, true);
+    	if(isset($this->form_title))
+    		$this->data_header['title'] = $this->form_title;
+    	if($this->wrap_form)
+    		$this->output_html .= $this->load->view($this->template_header, $this->data_header, true);
+    	$this->output_html .= $this->do_renderize_form_tag();
+    	$this->output_html .= $this->do_render_fields();
+    	$this->output_html .= "<hr/>\n";
+    	$this->output_html .= $this->do_render_buttons();
+    	$this->output_html .= form_close();
+    	if($this->wrap_form)
+    		$this->output_html .= $this->load->view($this->template_footer, $this->data_footer, true);
         log_message('debug', "Form ".$this->form_title." was correctly rendered.");
-        return $this->output_html;
+    	$saida = $this->output_html;
+        $this->output_html = '';
+        return $saida;
     }
 
     /**
@@ -217,22 +219,22 @@ class Formlib
     */
     private function do_renderize_form_tag()
     {
-        $attr = [];
-        $attr['role'] = 'form';
-        if(isset($this->form_type))
-            $attr['class'] = $this->form_type;
-        switch ($this->form_method) {
-            case 'get':
-                $attr['method'] = 'get';
-                $this->output_html .= "\n".form_open($this->form_action, $attr);
-                break;
-            case 'multipart':
-                $this->output_html .= "\n".form_open_multipart($this->form_action, $attr);
-                break;
-            default:
-                $this->output_html .= "\n".form_open($this->form_action, $attr);
-                break;
-        }
+		$attr = [];
+		$attr['role'] = 'form';
+		if(isset($this->form_type))
+    		$attr['class'] = $this->form_type;
+		switch ($this->form_method) {
+			case 'get':
+				$attr['method'] = 'get';
+				$this->output_html .= "\n".form_open($this->form_action, $attr);
+				break;
+			case 'multipart':
+				$this->output_html .= "\n".form_open_multipart($this->form_action, $attr);
+				break;
+			default:
+				$this->output_html .= "\n".form_open($this->form_action, $attr);
+				break;
+		}
     }
 
     /**
@@ -242,54 +244,54 @@ class Formlib
     */
     private function do_render_fields()
     {
-        foreach ($this->form_fields as $key => $value) {
+    	foreach ($this->form_fields as $key => $value) {
 
-            if(!isset($value['type'])){
+    		if(!isset($value['type'])){
                 show_error("<b>FormLib says:</b> I can not renderize a field without the TYPE value.");
                 log_message('error', "Failed rendering the form field without type.");
             }
 
-            if(!isset($value['class']))$value['class'] = 'form-control'; else $value['class'] = $value['class'].' form-control';
-            if(!isset($value['name']))$value['name'] = ' ';
+    		if(!isset($value['class']))$value['class'] = 'form-control'; else $value['class'] = $value['class'].' form-control';
+    		if(!isset($value['name']))$value['name'] = ' ';
             if(!isset($value['error_msg']))$error_msg = ''; else $error_msg = $value['error_msg'];
-            if(!isset($value['id']))$value['id'] = $value['name'];
+    		if(!isset($value['id']))$value['id'] = $value['name'];
             unset($value['error_msg']);
 
-            switch ($value['type']) {
-                case 'textarea':
-                    $this->output_html .= $this->field_wrapper($value['id'], $key, form_textarea($value), $error_msg);
-                    break;
-                case 'email':
-                    $this->output_html .= $this->field_wrapper($value['id'], $key, form_input($value), $error_msg);
-                    break;
-                case 'upload':
-                    $this->output_html .= $this->field_wrapper($value['id'], $key, form_upload($value), $error_msg);
-                    break;
-                case 'password':
-                    $this->output_html .= $this->field_wrapper($value['id'], $key, form_password($value), $error_msg);
-                    break;
-                case 'dropdown':
-                    if(!isset($value['selected']))$value['selected'] = null;
-                    $this->output_html .= $this->field_wrapper($value['id'], $key, form_dropdown($value['name'], $value['options'], $value['selected'], ['class'=>$value['class']]), $error_msg);
-                    break;
-                case 'multiselect':
-                    if(!isset($value['selected']))$value['selected'] = null;
-                    $this->output_html .= $this->field_wrapper($value['id'], $key, form_multiselect($value['name'], $value['options'], $value['selected'], ['class'=>$value['class']]), $error_msg);
-                    break;
+    		switch ($value['type']) {
+    			case 'textarea':
+    				$this->output_html .= $this->field_wrapper($value['id'], $key, form_textarea($value), $error_msg);
+    				break;
+    			case 'email':
+    				$this->output_html .= $this->field_wrapper($value['id'], $key, form_input($value), $error_msg);
+    				break;
+    			case 'upload':
+    				$this->output_html .= $this->field_wrapper($value['id'], $key, form_upload($value), $error_msg);
+    				break;
+    			case 'password':
+    				$this->output_html .= $this->field_wrapper($value['id'], $key, form_password($value), $error_msg);
+    				break;
+    			case 'dropdown':
+    				if(!isset($value['selected']))$value['selected'] = null;
+    				$this->output_html .= $this->field_wrapper($value['id'], $key, form_dropdown($value['name'], $value['options'], $value['selected'], ['class'=>$value['class']]), $error_msg);
+    				break;
+    			case 'multiselect':
+    				if(!isset($value['selected']))$value['selected'] = null;
+    				$this->output_html .= $this->field_wrapper($value['id'], $key, form_multiselect($value['name'], $value['options'], $value['selected'], ['class'=>$value['class']]), $error_msg);
+    				break;
                 case 'checkbox':
                     $this->output_html .= $this->checkbox_wrapper($key, form_checkbox($value['name'], $value['value'], $value['checked']));
                     break;
                 case 'radio':
                     $this->output_html .= $this->radio_wrapper($key, form_radio($value['name'], $value['value'], $value['checked']));
                     break;
-                case 'hidden':
-                    $this->output_html .= form_hidden($value['name'], $value['value']);
-                    break;
-                default:
-                    $this->output_html .= $this->field_wrapper($value['id'], $key, form_input($value), $error_msg);
-                    break;
-            }
-        }
+    			case 'hidden':
+    				$this->output_html .= form_hidden($value['name'], $value['value']);
+    				break;
+    			default:
+    				$this->output_html .= $this->field_wrapper($value['id'], $key, form_input($value), $error_msg);
+    				break;
+    		}
+    	}
     }
 
     /**
@@ -315,14 +317,21 @@ class Formlib
     */
     private function do_render_buttons()
     {
-        $button_html = "";
-        foreach($this->form_buttons as $value) {
-            if($value['type'] == 'link')
-                $button_html .= anchor($value['url'], $value['content'], ['class' => $value['class']]);
-            else
-                $button_html .= form_button($value);
-        }
-        return $this->button_wrapper($button_html);
+    	$button_html = "";
+    	foreach($this->form_buttons as $value) {
+            switch ($value['type']) {
+                case 'link':
+                    $button_html .= site_url($value['url']);
+                    break;
+                case 'anchor':
+                    $button_html .= anchor($value['url'], $value['content'], ['class' => $value['class']]);
+                    break;
+                default:
+                    $button_html .= form_button($value);
+                    break;
+            }
+    	}
+    	return $this->button_wrapper($button_html);
     }
 
     /**
@@ -336,23 +345,23 @@ class Formlib
     */
     private function field_wrapper($id, $label, $field, $error_msg = '')
     {
-        if($this->form_type == 'form-horizontal'){
-            # 2 collumns
-            $this->output_html .= "<div class=\"form-group\">\n";
-            $this->output_html .= "<label for=\"".$id."\" class=\"col-sm-2 control-label\">".$label."</label>\n";
-            $this->output_html .= "<div class=\"col-sm-10\">\n";
-            $this->output_html .= "$field\n";
+    	if($this->form_type == 'form-horizontal'){
+    		# 2 collumns
+			$this->output_html .= "<div class=\"form-group\">\n";
+			$this->output_html .= "<label for=\"".$id."\" class=\"col-sm-2 control-label\">".$label."</label>\n";
+			$this->output_html .= "<div class=\"col-sm-10\">\n";
+			$this->output_html .= "$field\n";
             $this->output_html .= $this->do_show_error($error_msg)."\n";
-            $this->output_html .= "</div>\n";
-            $this->output_html .= "</div>\n";
-        } else {
-            # 1 collumn
-            $this->output_html .= "<div class=\"form-group\">\n";
-            $this->output_html .= "<label for=\"".$id."\">".$label."</label>\n";
-            $this->output_html .= "$field\n";
+			$this->output_html .= "</div>\n";
+			$this->output_html .= "</div>\n";
+    	} else {
+    		# 1 collumn
+			$this->output_html .= "<div class=\"form-group\">\n";
+			$this->output_html .= "<label for=\"".$id."\">".$label."</label>\n";
+			$this->output_html .= "$field\n";
             $this->output_html .= $this->do_show_error($error_msg)."\n";
-            $this->output_html .= "</div>\n";
-        }
+			$this->output_html .= "</div>\n";
+    	}
     }
 
     /**
@@ -363,17 +372,17 @@ class Formlib
     */
     private function button_wrapper($buttons)
     {
-        if($this->form_type == 'form-horizontal'){
-            # 2 collumns
-            $this->output_html .= "<div class=\"form-group\">\n";
-            $this->output_html .= "<div class=\"col-sm-offset-2 col-sm-10\">\n";
-            $this->output_html .= "$buttons\n";
-            $this->output_html .= "</div>\n";
-            $this->output_html .= "</div>\n";
-        } else {
-            # 1 collumn
-            $this->output_html .= "$buttons\n";
-        }
+    	if($this->form_type == 'form-horizontal'){
+    		# 2 collumns
+			$this->output_html .= "<div class=\"form-group\">\n";
+			$this->output_html .= "<div class=\"col-sm-offset-2 col-sm-10\">\n";
+    		$this->output_html .= "$buttons\n";
+    		$this->output_html .= "</div>\n";
+    		$this->output_html .= "</div>\n";
+    	} else {
+    		# 1 collumn
+			$this->output_html .= "$buttons\n";
+    	}
     }
 
     /**
@@ -449,7 +458,7 @@ class Formlib
     */
     public function set_options($options = [])
     {
-        $this->do_set_options($options);
+    	$this->do_set_options($options);
     }
 
     /**
@@ -462,7 +471,7 @@ class Formlib
     */
     public function set_fields($fields = [])
     {
-        $this->form_fields = $fields;
+    	$this->form_fields = $fields;
     }
 
     /**
@@ -475,7 +484,7 @@ class Formlib
     */
     public function set_buttons($buttons = [])
     {
-        $this->form_buttons = $buttons;
+    	$this->form_buttons = $buttons;
     }
 
     /**
@@ -487,7 +496,7 @@ class Formlib
     */
     public function render()
     {
-        return $this->do_renderize_form();
+    	return $this->do_renderize_form();
     }
 
 }
