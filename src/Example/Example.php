@@ -8,7 +8,7 @@ class Example extends CI_Controller {
 		/**
 		* Load the library and the dependencies.
 		*/
-		$formlib = new \FormLib\FormLib();
+		$formlib = new \Formlib\FormLib();
 		
 		/**
 		* Prepares an array with the general attributes of the form.
