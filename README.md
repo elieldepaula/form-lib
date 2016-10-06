@@ -14,13 +14,20 @@ It is hoped that in this way we can take advantage of security features and stab
 - Form helper (CodeIgniter)
 - Url helper (CodeIgniter)
 
-# Installation
-1. Download the template library and place it in the / applications / libraries
-2. Copy the forms folder to your folder views, usually in / applications / views
-3. And then just load it with $this->load->library('formlib/formlib') within your controller.
+# Installation with Composer
+
+```
+"require" : {
+	"elieldepaula/FormLib": "*"
+}
+```
+
+## Note
+
+If you want or need to wrapp the form into a bootstrap panel, you must to copy the folder `FormLib/forms` into your views directory.
 
 # Use
-An example of use of the library is shown in example.php
+An example of use of the library is shown in `FormLib/src/Examples`
 
 # License
 This is a personal project, I am making available under the MIT license, you can use the way you see fit, but without any warranty. If you want to contribute to the project, please contact me by email dev[at]elieldepaula.com.br, clone the repository and start coding.
@@ -39,13 +46,20 @@ Espera-se que desta forma possa-se tirar proveito dos recursos de segurança do 
 - Form helper (CodeIgniter)
 - Url helper (CodeIgniter)
 
-# Instalação
-1. Faça o download da bilioteca e coloque-a na pasta /applications/libraries
-2. Copie a pasta forms para sua pasta de views, usualmente em /applications/views
-3. e em seguida basta carrega-la com $this->load->library('formlib/formlib') dentro do seu controller.
+# Instalação com Composer
+
+```
+"require" : {
+	"elieldepaula/FormLib": "*"
+}
+```
+
+## Nota
+
+Se você quer ou precisa exibir seu formulário dentro de um Bootstrap Panel, você precisa copiar a pasta `FormLib/forms` para sua pasta de views.
 
 # Utilização
-Um exemplo de utilização da biblioteca está demonstrado em Example.php
+Um exemplo de utilização da biblioteca está demonstrado em `FormLib/src/Examples`
 
 # Licença
 Este é um projeto pessoal, estou disponibilizando sob a licença MIT, você pode usar da forma que achar melhor, mas sem nenhuma garantia. Se quiser contribuir para o projeto, entre em contato comigo pelo email dev[at]elieldepaula.com.br, clone o repositório e começe a programar.

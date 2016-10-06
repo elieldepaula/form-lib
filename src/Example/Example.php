@@ -8,8 +8,7 @@ class Example extends CI_Controller {
 		/**
 		* Load the library and the dependencies.
 		*/
-		$this->load->library('formlib/formlib');
-		$this->load->helper(['form', 'url']);
+		$formlib = new \FormLib\FormLib();
 		
 		/**
 		* Prepares an array with the general attributes of the form.
@@ -35,8 +34,9 @@ class Example extends CI_Controller {
 			# 'method'		=> 'post',
 			/**
 			* Wrapp or not the form between header and footer templates.
+			* Note: To use wrap_form you must copy the form folter into your views directory.
 			*/
-			# 'wrap_form' 	=> true,
+			// 'wrap_form' 	=> false,
 			/**
 			* Setup the header wrapper template. (Default: views/form/template_header).
 			*/
@@ -80,20 +80,20 @@ class Example extends CI_Controller {
 		$form_buttons = [
 			['content' => 'Enviar o formulário', 'type'=>'submit', 'class' => 'btn btn-primary', 'name'=>'', 'id'=>'', 'value'=>''],
 			['content' => 'Limpar o formulário', 'type'=>'reset', 'class' => 'btn btn-warning', 'name'=>'', 'id'=>'', 'value'=>''],
-			['content' => 'Cancelar', 'type'=>'link', 'url' => site_url(), 'class' => 'btn btn-danger', 'name'=>'', 'id'=>'', 'value'=>'']
+			['content' => 'Cancelar', 'type'=>'anchor', 'url' => site_url(), 'class' => 'btn btn-danger', 'name'=>'', 'id'=>'', 'value'=>'']
 		];
 		
 		/**
 		* Send the options, fields and buttons to Formlib.
 		*/
-		$this->formlib->set_options($form_options);
-		$this->formlib->set_fields($form_fields);
-		$this->formlib->set_buttons($form_buttons);
+		$formlib->set_options($form_options);
+		$formlib->set_fields($form_fields);
+		$formlib->set_buttons($form_buttons);
 
 		/**
 		* Renderize the form.
 		*/
-		$formulario = $this->formlib->render();
+		echo $formulario = $formlib->render();
 
 		/**
 		* Use it into your view.
