@@ -59,7 +59,7 @@ Espera-se que desta forma possa-se tirar proveito dos recursos de segurança do 
 Se você quer ou precisa exibir seu formulário dentro de um Bootstrap Panel, você precisa copiar a pasta `FormLib/forms` para sua pasta de views.
 
 # Utilização
-Um exemplo de utilização da biblioteca está demonstrado em `FormLib/src/Examples`
+Um exemplo de utilização da biblioteca está demonstrado em `FormLib/src/Examples`.
 
 # Licença
 Este é um projeto pessoal, estou disponibilizando sob a licença MIT, você pode usar da forma que achar melhor, mas sem nenhuma garantia. Se quiser contribuir para o projeto, entre em contato comigo pelo email dev[at]elieldepaula.com.br, clone o repositório e começe a programar.
