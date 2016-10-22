@@ -27,7 +27,7 @@ It is hoped that in this way we can take advantage of security features and stab
 If you want or need to wrapp the form into a bootstrap panel, you must to copy the folder `FormLib/forms` into your views directory.
 
 # Use
-An example of use of the library is shown in `FormLib/src/Examples`
+An example of use of the library is shown in `FormLib/src/Examples`.
 
 # License
 This is a personal project, I am making available under the MIT license, you can use the way you see fit, but without any warranty. If you want to contribute to the project, please contact me by email dev[at]elieldepaula.com.br, clone the repository and start coding.
