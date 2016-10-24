@@ -62,7 +62,7 @@ class Example extends CI_Controller {
 		*/
 		$form_fields = [
 			'hidden' 		=> ['type'=>'hidden','name'=>'id', 'value'=>'123'],
-			'Texto' 		=> ['type'=>'text','name'=>'nome', 'value'=>'Valor padrão', 'error_msg'=>'Mensagem de erro', 'placeholder'=>'Informe um texto...', 'required'=>true],
+			'Texto' 		=> ['type'=>'text','name'=>'nome', 'value'=>'Valor padrão', 'error_msg'=>'Mensagem de erro', 'placeholder'=>'Informe um texto aqui...', 'required'=>true],
 			'Upload' 		=> ['type'=>'upload','name'=>'foto', 'placeholder'=>'Selecione uma foto...'],
 			'Dropdown'		=> ['type'=>'dropdown','name'=>'catg', 'options'=>$options],
 			'Multi Select'	=> ['type'=>'multiselect','name'=>'catg', 'options'=>$options],
@@ -101,5 +101,4 @@ class Example extends CI_Controller {
 		$this->load->view('your_view', ['content' => $formulario]);
 
 	}
-
 }
