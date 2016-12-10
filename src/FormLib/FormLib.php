@@ -305,9 +305,9 @@ class Formlib
     * @var string - Error message
     * @return string
     */
-    private function do_show_error($error_msg)
+    private function do_show_error($error_msg = NULL)
     {
-        if(isset($error_msg))
+        if(!$error_msg == NULL)
             return "<p class=\"label label-danger\">".$error_msg."</p>\n";
     }
 
